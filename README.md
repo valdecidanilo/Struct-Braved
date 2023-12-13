@@ -7,7 +7,9 @@ Este guia oferece uma compreensão aprofundada da estrutura do código em C# no 
 Projeto Demonstrativo: [Projeto Demo](https://github.com/valdecidanilo/Struct-Braved)
 
 Pacotes recomendados:
+
 - [Addressables](https://docs.unity3d.com/Manual/com.unity.addressables.html)
+- [NativeWebSocket](https://github.com/endel/NativeWebSocket.git#upm)
 - [Universal RP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@17.0/manual/index.html)
 - [NewtonSoft Json](https://github.com/applejag/Newtonsoft.Json-for-Unity/wiki/Install-official-via-UPM)
 
