@@ -1,10 +1,10 @@
 using System.IO;
-using Braved.Runtime.Scripts.Manager;
-using Braved.Runtime.Scripts.Views;
-using Controllers;
+using Braved.Manager;
+using Braved.Views;
+using Braved.Controllers;
 using UnityEditor;
 using UnityEngine;
-using Component = Braved.Runtime.Scripts.Components.Component;
+using Component = Braved.Components.Component;
 
 namespace Braved.Editor
 {
@@ -48,7 +48,7 @@ namespace Braved.Editor
             
             CreateScript<Controller>("Home", ControllersPath, @"
 using Scripts.Views;
-using Interfaces;
+using Braved.Interfaces;
 using UnityEngine;
 
 namespace Scripts.Controllers
@@ -75,7 +75,7 @@ namespace Scripts.Controllers
 ");
             
             CreateScript<View>("Home", ViewsPath,@"
-using Interfaces;
+using Braved.Interfaces;
 using Scripts.Components;
 using UnityEngine;
 //using UnityEngine.AddressableAssets;
@@ -121,7 +121,7 @@ namespace Scripts.Views
 }
 ");
             CreateScript<Component>("Home", ComponentsPath, @"
-using TMPro;
+//using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -132,8 +132,8 @@ namespace Scripts.Components
         /*
             Todas as referencias de componentes devem ser feitas aqui
         */
-        public Button ButtonOk;
-        public TMP_Text Text;
+        //public Button ButtonOk;
+        //public TMP_Text Text;
         /* Caso necessite de operações pode se usar para atribuir valores
             public void SetText(string text)
             {

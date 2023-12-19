@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Braved.Runtime.Scripts.Components
+namespace Braved.Components
 {
     public class Component : MonoBehaviour
     {

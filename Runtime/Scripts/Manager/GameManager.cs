@@ -1,7 +1,7 @@
-﻿using Controllers;
+﻿using Braved.Controllers;
 using UnityEngine;
 
-namespace Braved.Runtime.Scripts.Manager
+namespace Braved.Manager
 {
     public class GameManager : MonoBehaviour
     {

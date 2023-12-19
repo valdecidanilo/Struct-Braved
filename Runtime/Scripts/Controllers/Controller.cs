@@ -1,9 +1,8 @@
-using System;
-using Braved.Runtime.Scripts.Views;
-using Interfaces;
+using Braved.Views;
+using Braved.Interfaces;
 using UnityEngine;
 
-namespace Controllers
+namespace Braved.Controllers
 {
     public class Controller : MonoBehaviour, IController
     {

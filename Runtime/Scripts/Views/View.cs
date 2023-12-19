@@ -1,7 +1,7 @@
-﻿using Interfaces;
+﻿using Braved.Interfaces;
 using UnityEngine;
 
-namespace Braved.Runtime.Scripts.Views
+namespace Braved.Views
 {
     public class View : IView
     {
