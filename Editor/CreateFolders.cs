@@ -10,15 +10,15 @@ namespace Braved.Editor
 {
     public class CreateFolders : MonoBehaviour
     {
-        private const string BasePath = "Assets/Test";
-        private const string ScriptsPath = BasePath + "/Scripts";
+        private const string BasePath = "Assets/";
+        private const string ScriptsPath = "Assets/Scripts";
         
         private const string ManagerPath = ScriptsPath + "/Manager";
         private const string ControllersPath = ScriptsPath + "/Controllers";
         private const string ViewsPath = ScriptsPath + "/Views";
         private const string ComponentsPath = ScriptsPath + "/Components";
     
-        [MenuItem("Braved/Create Initial Structure")]
+        [MenuItem("Braved/Structure/Create Structure")]
         private static void CreateProjectStructure()
         {
             // Criação de pastas principais
@@ -41,9 +41,9 @@ namespace Braved.Editor
     
             Debug.Log("Estrutura do projeto criada com sucesso!");
             
-            CreateScripts();
+            CreateScriptsAddressables();
         }
-        private static void CreateScripts()
+        private static void CreateScriptsAddressables()
         {
             
             CreateScript<Controller>("Home", ControllersPath, @"
@@ -78,8 +78,8 @@ namespace Scripts.Controllers
 using Interfaces;
 using Scripts.Components;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
+//using UnityEngine.AddressableAssets;
+//using UnityEngine.ResourceManagement.AsyncOperations;
 using Utils;
 
 namespace Scripts.Views
@@ -97,12 +97,14 @@ namespace Scripts.Views
             */
         }
 
-        private void OnComplete(AsyncOperationHandle<GameObject> obj)
+        private void OnComplete(/*AsyncOperationHandle<GameObject> obj*/)
         {
             // Verifica se a operação foi bem sucedida
+            /*
             if (obj.Status != AsyncOperationStatus.Succeeded) return;
             var instantiatedObject = obj.Result;
             _component = instantiatedObject.GetComponent<HomeComponent>();
+            */
             /* Inicializa os componentes
             _component.ButtonOk.onClick.AddListener(() =>
             {
@@ -113,7 +115,7 @@ namespace Scripts.Views
         public void Unload()
         {
             // Tira o componente da memória e destroi o objeto
-            Addressables.ReleaseInstance(_component.gameObject);
+            //Addressables.ReleaseInstance(_component.gameObject);
         }
     }
 }
