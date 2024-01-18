@@ -24,8 +24,10 @@ namespace Braved.Editor
             // Criação de pastas principais
             CreateFolder($"{BasePath}/Animator");
             CreateFolder($"{BasePath}/Resources");
+            CreateFolder($"{BasePath}/Prefabs");
             CreateFolder($"{BasePath}/Sprites");
             CreateFolder($"{BasePath}/Scripts");
+            CreateFolder($"{BasePath}/AssetBundles");
     
             // Criação de subpastas dentro de Scripts
             CreateFolder($"{ScriptsPath}/Manager");
@@ -158,6 +160,11 @@ namespace Manager
         {
             controller.StartController();
         }
+        private void UnloadUnusedAssets()
+        {
+            // Limpa a memória, chame sempre que necessário.
+            Resources.UnloadUnusedAssets();
+        }
     }
 }
 ");
@@ -199,8 +206,8 @@ namespace Manager
                 // Se a classe não herdar de MonoBehaviour, use diretamente o nome da classe
                 baseTypeName = type.Name;
             }
-            var template = bodytemplate;
-            return template;
+
+            return bodytemplate;
         }
         private static void CreateFolder(string path)
         {
