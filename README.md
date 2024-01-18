@@ -51,6 +51,8 @@ Essa estrutura proporciona uma organização clara e eficiente, garantindo a man
 - **Prefabs/Resources**: Local onde são armazenados todos os assets de prefab padrão gerados pelo Unity.
   
 - **Addressables**: Integração com o pacote Addressable para o eficiente carregamento/descarregamento de ativos e instâncias em memória.
+
+- **AssetBundles**: Arquivos em Bundles armazenados.
   
 - **Models**: As classes na pasta Models são dedicadas à tradução eficiente dos dados de Serviços e Web Requests. Simplificam informações complexas para que o código possa facilmente entender e utilizar.
   
