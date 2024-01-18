@@ -30,11 +30,11 @@ namespace Braved.Editor
             CreateFolder($"{BasePath}/AssetBundles");
     
             // Criação de subpastas dentro de Scripts
-            CreateFolder($"{ScriptsPath}/Manager");
+            CreateFolder($"{ScriptsPath}/Managers");
             CreateFolder($"{ScriptsPath}/Components");
             CreateFolder($"{ScriptsPath}/Controllers");
             CreateFolder($"{ScriptsPath}/Interfaces");
-            CreateFolder($"{ScriptsPath}/Manager");
+            CreateFolder($"{ScriptsPath}/Managers");
             CreateFolder($"{ScriptsPath}/Models");
             CreateFolder($"{ScriptsPath}/Services");
             CreateFolder($"{ScriptsPath}/States");
