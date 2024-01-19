@@ -7,5 +7,19 @@
     "author": {
       "name": "valdeci danilo",
       "email": "valdecidanilo@live.com"
-    }
+    },
+    "coAuthor": 
+    {
+      "name": "leniton",
+      "email": "lenitoncarneiro@gmail.com"
+    },
+    "keywords": [
+      "structure",
+      "unity",
+      "package"
+    ],
+    "category": "Core",
+  "dependencies": {
+    "com.unity.addressables": "1.21.19"
+  }
 }
