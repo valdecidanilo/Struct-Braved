@@ -21,6 +21,20 @@ namespace Braved.Editor
         [MenuItem("Braved/Structure/Create Structure")]
         private static void CreateProjectStructure()
         {
+#if UNITY_ADDRESSABLES
+    Debug.Log("O pacote UnityEngine.AddressableAssets está instalado.");
+#else
+            Debug.LogError("O pacote Addressables não está instalado. Por favor, instale o pacote para continuar.");
+    
+            // Abra uma janela de diálogo com instruções para abrir o Package Manager
+            EditorUtility.DisplayDialog(
+                "Pacote Ausente",
+                "O pacote Addressables não está instalado. Por favor, abra o Package Manager e instale o pacote para continuar.",
+                "OK"
+            );
+
+            return;
+#endif
             // Criação de pastas principais
             CreateFolder($"{BasePath}/Animator");
             CreateFolder($"{BasePath}/Resources");
@@ -168,7 +182,88 @@ namespace Manager
     }
 }
 ");
-            
+            CreateScript<GameManager>("", ManagerPath, @"
+using Scripts.Controllers;
+using UnityEngine;
+
+namespace Manager
+{
+    public class GameManager : MonoBehaviour
+    {
+        // Todos so controladores devem ser referenciados aqui
+        public HomeController controller;
+        
+        private void Awake()
+        {
+            controller.StartController();
+        }
+        private void UnloadUnusedAssets()
+        {
+            // Limpa a memória, chame sempre que necessário.
+            Resources.UnloadUnusedAssets();
+        }
+    }
+}
+");
+            CreateScript<AddressableAsyncObject>("", $"{ScriptsPath}/Utils", @"
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
+public class AddressableAsyncObject<T> where T : Component
+{
+    private T component;
+    private Queue<Action<T>> actionQueue;
+    private AssetReference reference;
+
+    public AddressableAsyncObject(string address, Transform parent = null)
+    {
+        component = null;
+        actionQueue = new();
+        reference = new (address);
+        Addressables.InstantiateAsync(reference, parent).Completed += EmptyQueue;
+    }
+
+    public AddressableAsyncObject(GameObject instance)
+    {
+        component = instance.GetComponent<T>();
+    }
+
+    private void EmptyQueue(AsyncOperationHandle<GameObject> handle)
+    {
+        component = handle.Result.GetComponent<T>();
+        while (actionQueue.Count > 0)
+        {
+            Action<T> current = actionQueue.Dequeue();
+            current?.Invoke(component);
+            if(current == DestroyAsyncObject)
+            {
+                Debug.LogWarning(""object destroyed, canceling further actions"");
+                break;
+            }
+        }
+    }
+    public void QueueAction(Action<T> action)
+    {
+        if (component == null)
+            actionQueue.Enqueue(action);
+        else
+            action?.Invoke(component);
+    }
+
+    public void Destroy()
+    {
+        QueueAction(DestroyAsyncObject);
+    }
+
+    private void DestroyAsyncObject(T _component)
+    {
+        reference.ReleaseInstance(_component.gameObject);
+        actionQueue.Clear();
+    }
+}");
             AssetDatabase.Refresh();
             Debug.Log("Scripts criados com sucesso!");
         }

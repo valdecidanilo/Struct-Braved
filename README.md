@@ -1,5 +1,7 @@
 # Estrutura Braved
 
+Estrutura Criada por Valdeci e Leniton
+
 ## Visão Geral
 
 Este guia oferece uma compreensão aprofundada da estrutura do código em C# no Unity, proporcionando clareza, fácil manutenção e extensibilidade para o seu projeto.
